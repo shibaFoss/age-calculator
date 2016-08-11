@@ -5,44 +5,21 @@ package utils;
  */
 public abstract class DateCalculator {
 
-    public static class Result {
-        String years;
-        String months;
-        String days;
-        String hours;
-        String seconds;
-        String milliseconds;
-        public String daysLived;
-    }
-
-    public static class Year {
-        int day;
-        int month;
-        int year;
-
-        public Year(int day, int month, int year) {
-            this.day = day;
-            this.month = month;
-            this.year = year;
-        }
-    }
-
     /**
      * The class don't offer a public constructor.
      */
     private DateCalculator() {
-        
+
     }
 
     /**
      * Calculate the days between two different dates.
      */
-    public Result calculate(Year from, Year to) throws Exception {
+    public static Result calculate(Year from, Year to) throws Exception {
         if (to.year < from.year)
             throw new Exception("fromYear can no be greater than toYear.");
 
         long years = to.year - (from.year + 1);
-        long months = years * 12;
         long days = 0;
 
         //Calculate the days.
@@ -140,6 +117,33 @@ public abstract class DateCalculator {
             return 31;
 
         return 0;
+    }
+
+    public static class Result {
+        String years;
+        String months;
+        String days;
+        String hours;
+        String seconds;
+        String milliseconds;
+        String daysLived;
+
+        @Override
+        public String toString() {
+            return years + " Years, " + months + " Months, " + days + " Days";
+        }
+    }
+
+    public static class Year {
+        int day;
+        int month;
+        int year;
+
+        public Year(int day, int month, int year) {
+            this.day = day;
+            this.month = month;
+            this.year = year;
+        }
     }
 
 
