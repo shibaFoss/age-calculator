@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">Age_Calculator</string>
+    <string name="app_name">Age Calculator</string>
+    <string name="str_press_back_once_more_to_exit">Press once more to exit</string>
+    <string name="str_day">Day</string>
+    <string name="str_year">Year</string>
+    <string name="str_month">Month</string>
+    <string name="str_today_s_date">Today\'s Date</string>
+    <string name="str_date_of_birth">Date of Birth</string>
+    <string name="str_calculate">Calculate</string>
+    <string name="str_clear">Clear</string>
+    <string name="str_your_age">Your Age : </string>
 </resources>

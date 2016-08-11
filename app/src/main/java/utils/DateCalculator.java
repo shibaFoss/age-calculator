@@ -65,6 +65,7 @@ public abstract class DateCalculator {
 
     /**
      * Check whether the given year is a leap year or not.
+     *
      * @return return true if the given year is a leap year, false otherwise.
      */
     public static boolean isLeapYear(int year) {
@@ -74,6 +75,7 @@ public abstract class DateCalculator {
 
     /**
      * Calculate the days of an month
+     *
      * @return total days of an given month.
      */
     public static int getDaysOfMonth(int month, int year) {
@@ -143,6 +145,11 @@ public abstract class DateCalculator {
             this.day = day;
             this.month = month;
             this.year = year;
+        }
+
+        @Override
+        public String toString() {
+            return day + "/" + month + "/" + year;
         }
     }
 

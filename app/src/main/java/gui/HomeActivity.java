@@ -2,7 +2,11 @@ package gui;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.softc.age_calculator.R;
 
 import utils.DateCalculator;
 
@@ -11,22 +15,19 @@ import utils.DateCalculator;
  */
 public class HomeActivity extends Activity {
 
+
+    int isBackPressEventFired = 0;
+
     /**
      * The method get called by the system when user enter the app for the first time.
+     *
      * @param bundle the system send a {@link Bundle} object associate
      *               with this {@link HomeActivity} class.
      */
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        try {
-            DateCalculator.Year startingYear = new DateCalculator.Year(19, 11, 1994);
-            DateCalculator.Year endingYear = new DateCalculator.Year(11, 8, 2016);
-            DateCalculator.Result result = DateCalculator.calculate(startingYear, endingYear);
-            Log.d(HomeActivity.class.getName(), "Age = " + result.toString());
-        } catch (Exception error) {
-            error.printStackTrace();
-        }
+        setContentView(R.layout.activity_home);
 
     }
 
@@ -35,7 +36,34 @@ public class HomeActivity extends Activity {
      */
     @Override
     public void onBackPressed() {
-
+        exitActivityOnDoublePress();
     }
+
+    /**
+     * Exit the application by double click on the back button.
+     */
+    public void exitActivityOnDoublePress() {
+
+        if (isBackPressEventFired == 0) {
+            String msg = getString(R.string.str_press_back_once_more_to_exit);
+            Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+            isBackPressEventFired = 1;
+            new CountDownTimer(2000, 1000) {
+                @Override
+                public void onTick(long time) {
+                }
+
+
+                @Override
+                public void onFinish() {
+                    isBackPressEventFired = 0;
+                }
+            }.start();
+        } else if (isBackPressEventFired == 1) {
+            isBackPressEventFired = 0;
+            finish();
+        }
+    }
+
 
 }

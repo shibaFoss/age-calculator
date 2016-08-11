@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/ic_background_bg"
+              android:orientation="vertical">
+
+    <include layout="@layout/layout_action_bar_home_activity"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_3"
+        android:background="@drawable/ic_drop_down_shadow"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/layout_calculation_n_result_ui" />
+
+    </ScrollView>
+
+
+</LinearLayout>
