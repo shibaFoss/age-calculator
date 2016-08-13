@@ -2,6 +2,7 @@ package gui;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -105,6 +106,27 @@ public class HomeActivity extends Activity {
         } else if (isBackPressEventFired == 1) {
             isBackPressEventFired = 0;
             finish();
+        }
+    }
+
+    /**
+     * The method get called by button click, :: Share the age.
+     *
+     * @param view the view that calls the method.
+     */
+    public void onShare(View view) {
+        if (resultView != null) {
+            String ageString = resultView.getText().toString();
+            if (ageString.length() > 1) {
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, "My age is " + ageString);
+                startActivity(Intent.createChooser(sharingIntent, getString(R.string.str_share_using)));
+
+            } else {
+                Toast.makeText(this, getString(R.string.str_calculate_your_age_first),
+                        Toast.LENGTH_LONG).show();
+            }
         }
     }
 
@@ -232,4 +254,5 @@ public class HomeActivity extends Activity {
                 editStartYear.getText().length() > 0 && editEndDay.getText().length() > 0 &&
                 editEndMonth.getText().length() > 0 && editEndYear.getText().length() > 0;
     }
+
 }
