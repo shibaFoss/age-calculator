@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="gui.HomeActivity">
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,19 +25,6 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/edit_txt_start_days"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp_8"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:hint="@string/str_day"
-            android:maxLength="2"
-            android:textSize="@dimen/sp_18"
-            />
-
-
-        <EditText
             android:id="@+id/edit_txt_start_month"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -41,6 +32,20 @@
             android:layout_weight="1"
             android:gravity="center"
             android:hint="@string/str_month"
+            android:inputType="numberSigned"
+            android:maxLength="2"
+            android:textSize="@dimen/sp_18"
+            />
+
+        <EditText
+            android:id="@+id/edit_txt_start_days"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_8"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:hint="@string/str_day"
+            android:inputType="numberSigned"
             android:maxLength="2"
             android:textSize="@dimen/sp_18"
             />
@@ -53,10 +58,10 @@
             android:layout_weight="1"
             android:gravity="center"
             android:hint="@string/str_year"
+            android:inputType="numberSigned"
             android:maxLength="4"
             android:textSize="@dimen/sp_18"
             />
-
 
     </LinearLayout>
 
@@ -78,19 +83,6 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/edit_txt_end_days"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/dp_8"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:hint="@string/str_day"
-            android:maxLength="2"
-            android:textSize="@dimen/sp_18"
-            />
-
-
-        <EditText
             android:id="@+id/edit_txt_end_month"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -98,6 +90,20 @@
             android:layout_weight="1"
             android:gravity="center"
             android:hint="@string/str_month"
+            android:inputType="numberSigned"
+            android:maxLength="2"
+            android:textSize="@dimen/sp_18"
+            />
+
+        <EditText
+            android:id="@+id/edit_txt_end_days"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/dp_8"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:hint="@string/str_day"
+            android:inputType="numberSigned"
             android:maxLength="2"
             android:textSize="@dimen/sp_18"
             />
@@ -110,6 +116,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:hint="@string/str_year"
+            android:inputType="numberSigned"
             android:maxLength="4"
             android:textSize="@dimen/sp_18"
             />
@@ -127,6 +134,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp_8"
             android:layout_weight="1"
+            android:onClick="onCalculate"
             android:text="@string/str_calculate"
             />
 
@@ -136,11 +144,11 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/dp_8"
             android:layout_weight="1"
+            android:onClick="onClearEditFields"
             android:text="@string/str_clear"
             />
 
     </LinearLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -169,6 +177,11 @@
             android:layout_marginTop="@dimen/dp_8"
             android:paddingLeft="@dimen/dp_16"
             android:paddingRight="@dimen/dp_16"
+            android:shadowColor="@color/black_text"
+            android:shadowDx=".5"
+            android:shadowDy=".5"
+            android:shadowRadius=".5"
+            android:textColor="@color/white_text"
             android:textSize="@dimen/sp_18"
             />
 

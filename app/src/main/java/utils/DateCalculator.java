@@ -15,51 +15,47 @@ public abstract class DateCalculator {
     /**
      * Calculate the days between two different dates.
      */
-    public static Result calculate(Year from, Year to) throws Exception {
-        if (to.year < from.year)
-            throw new Exception("fromYear can no be greater than toYear.");
+    public static Result calculate(Year start, Year end) throws Exception {
+        if (start.year > end.year)
+            throw new Exception("Today's date can no be greater than Date of Birth.");
 
-        long years = to.year - (from.year + 1);
-        long days = 0;
+        int days = 0;
+        int years = end.year - (start.year + 1);
+        int months = years * 12;
 
-        //Calculate the days.
-        for (int index = 0; index < years; index++) {
-            int year = from.year + index;
-            if (!isLeapYear(year)) {
-                days += 365;
-            } else {
-                days += 366;
+        int remainingMonthsOfStartingYear = (12 - start.month);
+        int remainingMonthsOfEndingYear = (end.month - 1);
+
+        months += remainingMonthsOfStartingYear;
+        months += remainingMonthsOfEndingYear;
+
+        for (int year = 0; year < years; year++) {
+            for (int month = 0; month < 12; month++) {
+                days += getDaysOfMonth(month + 1, year);
             }
         }
 
-        long monthInclude;
-        if (to.month == 0) {
-            monthInclude = (12 - from.month);
-        } else {
-            monthInclude = (12 - from.month) + (to.month - 1);
+        for (int month = (start.month + 1); month < 13; month++) {
+            days += getDaysOfMonth(month, start.year);
         }
 
-        long dayInclude = (getDaysOfMonth(from.month, from.year) - from.day) + (to.day);
-
-        for (int index = 12; index > from.month; index--) {
-            days += getDaysOfMonth(index, from.year);
+        for (int month = 0; month < (end.month - 1); month++) {
+            days += getDaysOfMonth(month + 1, start.year);
         }
 
-        for (int index = 1; index < to.month; index++) {
-            days += getDaysOfMonth(index, from.year);
-        }
-
-        days += dayInclude;
+        days += getDaysOfMonth(start.month, start.year) - start.day; //ex: 30 - 19 = 11;
+        days += (end.day - 1); //ex: 13 - 1 = 12;
 
         Result result = new Result();
-        result.years = String.valueOf(years);
-        result.months = String.valueOf(monthInclude);
-        result.days = String.valueOf(dayInclude);
+        int ageYear = months / 12;
+        result.years = String.valueOf(ageYear);
 
-        result.daysLived = String.valueOf(days);
-        result.hours = String.valueOf((days * 24));
-        result.seconds = String.valueOf((days * 24) * 60);
-        result.milliseconds = String.valueOf(((days * 24) * 60) * 1000);
+        if (ageYear * 12 != months)
+            result.months = String.valueOf(months - (ageYear * 12));
+
+        result.days = String.valueOf((getDaysOfMonth(start.month, start.year) - start.day)
+                + (end.day - 1));
+
         return result;
     }
 
@@ -122,13 +118,9 @@ public abstract class DateCalculator {
     }
 
     public static class Result {
-        String years;
-        String months;
-        String days;
-        String hours;
-        String seconds;
-        String milliseconds;
-        String daysLived;
+        public String years;
+        public String months;
+        public String days;
 
         @Override
         public String toString() {
@@ -137,9 +129,9 @@ public abstract class DateCalculator {
     }
 
     public static class Year {
-        int day;
-        int month;
-        int year;
+        public int day;
+        public int month;
+        public int year;
 
         public Year(int day, int month, int year) {
             this.day = day;
@@ -152,6 +144,5 @@ public abstract class DateCalculator {
             return day + "/" + month + "/" + year;
         }
     }
-
 
 }

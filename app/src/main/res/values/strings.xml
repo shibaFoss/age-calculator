@@ -9,4 +9,6 @@
     <string name="str_calculate">Calculate</string>
     <string name="str_clear">Clear</string>
     <string name="str_your_age">Your Age : </string>
+    <string name="str_fill_dates_fields">Please fill the input fields</string>
+    <string name="str_correct_all_the_fields">Please correct the invalid inputs</string>
 </resources>
