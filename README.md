@@ -1,5 +1,6 @@
 # Age Calculator
 A small app that calculate days between two dates.
+[Install it from Google Play Store](http://bit.ly/2aTWRkQ).
 
 ### License
 
